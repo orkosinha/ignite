@@ -3,8 +3,10 @@ const SQL = require('sequelize');
 const http = require('http');
 
 function populateDB(events) {
-  //known keys with activities
-  var successes = true;
+  events.destroy({
+    where: {},
+    truncate: true
+  })
   for (var i = 0; i < KEYS.length; i++){
     http.get('http://www.boredapi.com/api/activity?key='+KEYS[i], (resp) => {
       let data = '';
@@ -16,16 +18,15 @@ function populateDB(events) {
       resp.on('end', async () => {
         var event = JSON.parse(data);
         if(event.error == null){
-          const success = await events.create({
+          await events.create({
             activity: event.activity,
             accessibility: event.accessibility,
             type: event.type,
             participants: event.participants,
             price: event.price
           });
-          successes = success && successes;
         }
-        events.sync({ alter : true});
+        events.sync({ force : false });
       });
     
     }).on("error", (err) => {
@@ -33,12 +34,12 @@ function populateDB(events) {
     });
   }
 
-  return successes;
+  return 0;
 }
 
 module.exports.allEvents = () => {
   //remember to change for commit
-  const db = new SQL('db', 'user', 'pw', {
+  const db = new SQL('team16_db', 'team16_user', 'ball is life', {
     dialect: 'mysql',
     host: '35.238.128.54',
     port: 3306,
