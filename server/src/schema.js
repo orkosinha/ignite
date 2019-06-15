@@ -2,24 +2,21 @@ const { gql } = require('apollo-server');
 
 const typeDefs = gql`
 type Query{
-    randomEvent: Event
-    allEvent: Event
-}
-
-type EventSearch{
-    type: String
-    participants: Int
-    price: Float
-    max_price: Float
-    accessibility: Float
+    randomEvent: Event!
+    searchEvent(
+        type: [String]
+        participants: Int
+        max_price: [String]
+        accessibility: [String]
+    ): [Event]
 }
 
 type Event {
     activity: String
-    accessibility: Float
+    accessibility: String
     type: String
     participants: Int
-    price: Float
+    price: String
 }
 `;
 

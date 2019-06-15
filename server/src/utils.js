@@ -53,10 +53,10 @@ module.exports.allEvents = () => {
       autoIncrement: true,
     },
     activity: SQL.STRING,
-    accessibility: SQL.FLOAT,
+    accessibility: SQL.STRING,
     type: SQL.STRING,
     participants: SQL.INTEGER,
-    price: SQL.INTEGER
+    price: SQL.STRING
   });
 
   populateDB(events);
