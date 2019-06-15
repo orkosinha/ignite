@@ -7,6 +7,8 @@ const eventDB = allEvents();
 const BoredAPI = require('./datasources/bored');
 
 const server = new ApolloServer({
+  playground: true,
+  introspection: true,
   typeDefs,
   resolvers,
   dataSources: () => ({
