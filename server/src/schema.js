@@ -3,6 +3,7 @@ const { gql } = require('apollo-server');
 const typeDefs = gql`
 type Query{
     randomEvent: Event
+    allEvent: Event
 }
 
 type EventSearch{
