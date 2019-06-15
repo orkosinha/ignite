@@ -1,2 +1,2 @@
 # ignite
-This app is built as part of {CODE:BUFFALO}
+This app is built as part of {code : buffalo}
