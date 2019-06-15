@@ -15,10 +15,6 @@
   ],
   "author": "Anikeit, Sina, Orko",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/orkosinha/ignite/issues"
-  },
-  "homepage": "https://github.com/orkosinha/ignite#readme",
   "dependencies": {
     "apollo-datasource": "^0.1.3",
     "apollo-datasource-rest": "^0.1.5",
