@@ -1,9 +1,9 @@
 const { ApolloServer } = require('apollo-server');
 const typeDefs = require('./schema');
 const resolvers = require('./resolvers');
-const { createAllEvents } = require('./utils');
+const { allEvents } = require('./utils');
 
-const eventDB = createAllEvents();
+const eventDB = allEvents();
 const BoredAPI = require('./datasources/bored');
 
 const server = new ApolloServer({

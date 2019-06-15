@@ -1,20 +1,52 @@
 const SQL = require('sequelize');
+const http = require('http');
 
+function populateDB(events) {
+  //known keys with activities
+  const keys = [9999999];
+  var successes = true;
 
-module.exports.createAllEvents = () => {
-  const Op = SQL.Op;
-  const operatorsAliases = {
-    $in: Op.in,
-  };
+  for (var i = 0; i < keys.length; i++){
+    http.get('http://www.boredapi.com/api/activity?key='+keys[i], (resp) => {
+      let data = '';
 
+      resp.on('data', (chunk) => {
+        data += chunk;
+      });
+
+      resp.on('end', async () => {
+        var event = JSON.parse(data);
+        if(event.error == null){
+          const success = await events.create({
+            activity: event.activity,
+            accessibility: event.accessibility,
+            type: event.type,
+            participants: event.participants,
+            price: event.price
+          });
+          successes = success && successes;
+        }
+        events.sync({ alter : true});
+      });
+    
+    }).on("error", (err) => {
+      console.log("Error: " + err.message);
+    });
+  }
+
+  return successes;
+}
+
+module.exports.allEvents = () => {
   //remember to change for commit
-  const db = new SQL('team16_db', 'team16_user', 'ball is life', {
+  const db = new SQL('db', 'user', 'pw', {
     dialect: 'mysql',
     host: '35.238.128.54',
-    port: 3306
+    port: 3306,
+    logging: false
   });
 
-  const event = db.define('event', {
+  const events = db.define('event', {
     id: {
       type: SQL.INTEGER,
       primaryKey: true,
@@ -27,5 +59,7 @@ module.exports.createAllEvents = () => {
     price: SQL.INTEGER
   });
 
-  return event;
+  populateDB(events);
+
+  return events;
 }
