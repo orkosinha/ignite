@@ -15,11 +15,19 @@ function parsePrice(price) {
 
 function parseAccessibility(acc) {
   if (0 <= acc && acc < 0.33) {
-    return "easy"
+    return "easy";
   } else if (0.33 <= acc && acc < 0.66) {
     return "medium";
   } else {
     return "hard";
+  }
+}
+
+function parseParticipants(par) {
+  if (par == 1) {
+    return "solo";
+  } else {
+    return "group";
   }
 }
 
@@ -36,15 +44,17 @@ class BoredAPI extends RESTDataSource {
     for (var i = 0; i < params.type.length; i++) {
       for (var j = 0; j < params.max_price.length; j++) {
         for (var k = 0; k < params.accessibility.length; k++){
-          var combo_arr = await this.eventDB.findAll(
-            { where:
-              { type: params.type[i],
-                participants: params.participants,
-                price: params.max_price[j],
-                accessibility: params.accessibility[k]
-              } 
-            });
-            full_arr = full_arr.concat(combo_arr);
+          for (var l = 0; l < params.participants.length; l++) {
+            var combo_arr = await this.eventDB.findAll(
+              { where:
+                { type: params.type[i],
+                  participants: params.participants,
+                  price: params.max_price[j],
+                  accessibility: params.accessibility[k]
+                } 
+              });
+              full_arr = full_arr.concat(combo_arr);
+            }
         }
       }
     }
@@ -69,7 +79,7 @@ class BoredAPI extends RESTDataSource {
         activity: response.activity,
         accessibility: parseAccessibility(response.accessibility),
         type: response.type,
-        participants: response.participants,
+        participants: parseParticipants(response.participants),
         price: parsePrice(response.price)
     }
   }
