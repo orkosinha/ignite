@@ -37,8 +37,8 @@ class BoredAPI extends RESTDataSource {
             { where:
               { type: params.type[i],
                 participants: params.participants,
-                price: ["$", "$$"],
-                accessibility: ["medium"]
+                price: params.max_price[j],
+                accessibility: params.accessibility[k]
               } 
             });
             full_arr = full_arr.concat(combo_arr);
