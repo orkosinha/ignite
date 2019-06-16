@@ -79,7 +79,7 @@ function parseParticipantsEmoji(parti) {
   if (parti == "solo") {
     return "🙋";
   } else if (parti == "group") {
-    return "👨‍👨‍👦‍👦";
+    return "👯";
   }
 }
 
@@ -134,13 +134,13 @@ class BoredAPI extends RESTDataSource {
     return {
         activity: response.activity,
         accessibility: parseAccessibility(response.accessibility),
-        accessibility_emoji: parseAccessibilityEmoji(response.accessibility),
+        accessibility_emoji: parseAccessibilityEmoji(parseAccessibility(response.accessibility)),
         type: response.type,
         type_emoji: parseTypeEmoji(response.type),
         participants: parseParticipants(response.participants),
         participant_emoji: parseParticipantsEmoji(parseParticipants(response.participants)),
         price: parsePrice(response.price),
-        price_emoji: parsePriceEmoji(response.price)
+        price_emoji: parsePriceEmoji(parsePrice(response.price))
     }
   }
 
