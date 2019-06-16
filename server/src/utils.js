@@ -2,10 +2,29 @@ const { KEYS } = require('./constants');
 const SQL = require('sequelize');
 const http = require('http');
 
+function parsePrice(price) {
+  if (0 <= price && price < 0.33) {
+    return "$"
+  } else if (0.33 <= price && price < 0.66) {
+    return "$$";
+  } else {
+    return "$$$";
+  }
+}
+
+function parseAccessibility(acc) {
+  if (0 <= acc && acc < 0.33) {
+    return "easy"
+  } else if (0.33 <= acc && acc < 0.66) {
+    return "medium";
+  } else {
+    return "hard";
+  }
+}
+
 function populateDB(events) {
   events.destroy({
-    where: {},
-    truncate: true
+    where: {}
   })
   for (var i = 0; i < KEYS.length; i++){
     http.get('http://www.boredapi.com/api/activity?key='+KEYS[i], (resp) => {
@@ -20,10 +39,10 @@ function populateDB(events) {
         if(event.error == null){
           await events.create({
             activity: event.activity,
-            accessibility: event.accessibility,
+            accessibility: parseAccessibility(event.accessibility),
             type: event.type,
             participants: event.participants,
-            price: event.price
+            price: parsePrice(event.price)
           });
         }
         events.sync({ force : false });

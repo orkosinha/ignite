@@ -50,10 +50,10 @@ class BoredAPI extends RESTDataSource {
     for (var i = 0; i < full_arr.length; i++){
       event_list.push({
         activity: full_arr[i].activity,
-        accessibility: parseAccessibility(full_arr[i].accessibility),
+        accessibility: full_arr[i].accessibility,
         type: full_arr[i].type,
         participants: full_arr[i].participants,
-        price: parsePrice(full_arr[i].price)
+        price: full_arr[i].price
       });
     }
     
