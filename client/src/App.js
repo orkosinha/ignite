@@ -15,7 +15,7 @@ class App extends Component {
     return (
       <ApolloProvider client={client}>
         <div id="main">
-          <h1>Sina Carried This Hackathon #Facts</h1>
+          {/* <h1>Sina Carried This Hackathon #Facts</h1> */}
           <RandomEvent/>
         </div>
       </ApolloProvider>

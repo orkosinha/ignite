@@ -7,9 +7,13 @@ const getRandomEventQuery = gql`
         randomEvent {
             activity
             accessibility
+            accessibility_emoji
             type
+            type_emoji
             participants
+            participant_emoji
             price
+            price_emoji
         }
     }
 `;
@@ -23,7 +27,7 @@ class RandomEvent extends Component {
       return (
         <div class='eventContainer'>
           <h1>{data.randomEvent.activity}</h1>
-          <p>{data.randomEvent.accessibility} 😵 • {data.randomEvent.type} ⛱️ • {data.randomEvent.participants} 🙋‍• {data.randomEvent.price} 🏦</p>
+          <p>{data.randomEvent.accessibility} {data.randomEvent.accessibility_emoji} • {data.randomEvent.type} {data.randomEvent.type_emoji} • {data.randomEvent.participants} {data.randomEvent.participant_emoji} • {data.randomEvent.price} {data.randomEvent.price_emoji}</p>
         </div>
       );
   }

@@ -27,6 +27,7 @@ code {
   font-weight: bolder;
   font-size: 200%;
 }
-#randomEvent li {
-  list-style: none;
+
+.eventContainer {
+  margin-top: 20%;
 }
