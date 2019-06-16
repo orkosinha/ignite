@@ -1,11 +1,14 @@
 const { RESTDataSource } = require('apollo-datasource-rest');
 
 function parsePrice(price) {
-  if (0 <= price && price < 0.33) {
+  if (price == 0) {
+    return "free";
+  } else if (0 < price && price < 0.33) {
     return "$"
   } else if (0.33 <= price && price < 0.66) {
     return "$$";
   } else {
+    console.log(price)
     return "$$$";
   }
 }
@@ -50,10 +53,10 @@ class BoredAPI extends RESTDataSource {
     for (var i = 0; i < full_arr.length; i++){
       event_list.push({
         activity: full_arr[i].activity,
-        accessibility: parseAccessibility(full_arr[i].accessibility),
+        accessibility: full_arr[i].accessibility,
         type: full_arr[i].type,
         participants: full_arr[i].participants,
-        price: parsePrice(full_arr[i].price)
+        price: full_arr[i].price
       });
     }
     

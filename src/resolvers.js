@@ -4,7 +4,7 @@ module.exports = {
         searchEvent: (_, {
             type = ["education", "recreational", "social", "diy", "charity", "cooking", "relaxation", "music", "busywork"],
             participants = 1,
-            max_price = ["$", "$$", "$$$"],
+            max_price = ["free", "$", "$$", "$$$"],
             accessibility = ["easy", "medium", "hard"]
         }, { dataSources }) => dataSources.boredAPI.getSearchEvent({
             type,
