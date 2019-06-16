@@ -7,6 +7,8 @@ const eventDB = allEvents();
 const BoredAPI = require('./datasources/bored');
 
 const server = new ApolloServer({
+  playground: true,
+  introspection: true,
   typeDefs,
   resolvers,
   dataSources: () => ({
@@ -14,6 +16,6 @@ const server = new ApolloServer({
   })
 });
 
-server.listen().then(({ url }) => {
+server.listen({ port: process.env.PORT || 4000 }).then(({ url }) => {
   console.log(`🚀 Server ready at ${url}`);
 });

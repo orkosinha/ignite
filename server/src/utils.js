@@ -3,8 +3,8 @@ const SQL = require('sequelize');
 const http = require('http');
 
 function parsePrice(price) {
-  if (price = 0) {
-    return "";
+  if (price == 0) {
+    return "free";
   } else if (0 < price && price < 0.33) {
     return "$"
   } else if (0.33 <= price && price < 0.66) {
@@ -26,7 +26,8 @@ function parseAccessibility(acc) {
 
 function populateDB(events) {
   events.destroy({
-    where: {}
+    where: {},
+    truncate: true
   })
   for (var i = 0; i < KEYS.length; i++){
     http.get('http://www.boredapi.com/api/activity?key='+KEYS[i], (resp) => {
