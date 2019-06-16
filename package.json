@@ -1,0 +1,35 @@
+{
+  "name": "ignite-server",
+  "version": "0.0.1",
+  "description": "A server for our ignite app",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/orkosinha/ignite.git"
+  },
+  "keywords": [
+    "none"
+  ],
+  "author": "Anikeit, Sina, Orko",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-datasource": "^0.1.3",
+    "apollo-datasource-rest": "^0.1.5",
+    "apollo-server": "2.2.0-alpha.2",
+    "apollo-server-testing": "2.2.0-alpha.2",
+    "graphql": "^14.0.2",
+    "isemail": "^3.1.3",
+    "mysql2": "^1.6.5",
+    "nodemon": "^1.18.4",
+    "sequelize": "^4.39.0"
+  },
+  "devDependencies": {
+    "apollo-link": "^1.2.3",
+    "apollo-link-http": "^1.5.5",
+    "nock": "^10.0.2",
+    "node-fetch": "^2.2.1"
+  }
+}
