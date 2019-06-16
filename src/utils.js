@@ -6,11 +6,11 @@ function parsePrice(price) {
   if (price == 0) {
     return "free";
   } else if (0 < price && price < 0.33) {
-    return "$"
+    return "cheap"
   } else if (0.33 <= price && price < 0.66) {
-    return "$$";
+    return "worth it";
   } else {
-    return "$$$";
+    return "expensive";
   }
 }
 
