@@ -1,7 +1,9 @@
 const { RESTDataSource } = require('apollo-datasource-rest');
 
 function parsePrice(price) {
-  if (0 <= price && price < 0.33) {
+  if (price = 0) {
+    return "";
+  } else if (0 < price && price < 0.33) {
     return "$"
   } else if (0.33 <= price && price < 0.66) {
     return "$$";

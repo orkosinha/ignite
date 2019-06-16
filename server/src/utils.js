@@ -3,7 +3,9 @@ const SQL = require('sequelize');
 const http = require('http');
 
 function parsePrice(price) {
-  if (0 <= price && price < 0.33) {
+  if (price = 0) {
+    return "";
+  } else if (0 < price && price < 0.33) {
     return "$"
   } else if (0.33 <= price && price < 0.66) {
     return "$$";
