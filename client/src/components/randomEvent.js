@@ -20,14 +20,17 @@ class RandomEvent extends Component {
       if (data.loading) {
           return <div> Loading Event... </div>
       }
-      return <li>{data.randomEvent.activity}</li>
+      return (
+        <div class='eventContainer'>
+          <h1>{data.randomEvent.activity}</h1>
+          <p>{data.randomEvent.accessibility} 😵 • {data.randomEvent.type} ⛱️ • {data.randomEvent.participants} 🙋‍• {data.randomEvent.price} 🏦</p>
+        </div>
+      );
   }
   render() {
     return (
-      <div>
-        <ul id="random-event">
-            <li> {this.displayRandomEvent()} </li>
-        </ul>  
+      <div id='randomEvent'>
+        <ul> {this.displayRandomEvent()} </ul>
       </div>
     );
   }
