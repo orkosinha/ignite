@@ -79,7 +79,7 @@ function parseParticipantsEmoji(parti) {
   if (parti == "solo") {
     return "🙋";
   } else if (parti == "group") {
-    return "👨‍👨‍👦‍👦";
+    return "👯";
   }
 }
 
