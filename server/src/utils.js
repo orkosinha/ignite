@@ -16,11 +16,19 @@ function parsePrice(price) {
 
 function parseAccessibility(acc) {
   if (0 <= acc && acc < 0.33) {
-    return "easy"
+    return "easy";
   } else if (0.33 <= acc && acc < 0.66) {
     return "medium";
   } else {
     return "hard";
+  }
+}
+
+function parseParticipants(par) {
+  if (par == 1) {
+    return "solo";
+  } else {
+    return "group";
   }
 }
 
@@ -44,7 +52,7 @@ function populateDB(events) {
             activity: event.activity,
             accessibility: parseAccessibility(event.accessibility),
             type: event.type,
-            participants: event.participants,
+            participants: parseParticipants(event.participants),
             price: parsePrice(event.price)
           });
         }
@@ -77,7 +85,7 @@ module.exports.allEvents = () => {
     activity: SQL.STRING,
     accessibility: SQL.STRING,
     type: SQL.STRING,
-    participants: SQL.INTEGER,
+    participants: SQL.STRING,
     price: SQL.STRING
   });
 

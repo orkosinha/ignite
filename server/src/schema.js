@@ -5,7 +5,7 @@ type Query{
     randomEvent: Event!
     searchEvent(
         type: [String]
-        participants: Int
+        participants: [String]
         max_price: [String]
         accessibility: [String]
     ): [Event]
@@ -15,7 +15,7 @@ type Event {
     activity: String
     accessibility: String
     type: String
-    participants: Int
+    participants: String
     price: String
 }
 `;
